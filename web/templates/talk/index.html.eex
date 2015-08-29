@@ -1,0 +1,34 @@
+<h2>Listing talks</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Authtor</th>
+      <th>Language</th>
+      <th>Link</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for talk <- @talks do %>
+    <tr>
+      <td><%= talk.name %></td>
+      <td><%= talk.description %></td>
+      <td><%= talk.authtor %></td>
+      <td><%= talk.language %></td>
+      <td><%= talk.link %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: talk_path(@conn, :show, talk), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: talk_path(@conn, :edit, talk), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: talk_path(@conn, :delete, talk), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New talk", to: talk_path(@conn, :new) %>

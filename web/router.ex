@@ -19,8 +19,9 @@ defmodule Codetalks.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
-    
+
     resources "/users", UserController
+    resources "/talks", TalkController
   end
 
   # Other scopes may use custom stacks.
