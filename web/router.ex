@@ -7,6 +7,7 @@ defmodule Codetalks.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :assign_current_user
   end
 
   pipeline :api do
@@ -24,8 +25,18 @@ defmodule Codetalks.Router do
     resources "/talks", TalkController
   end
 
+  scope "/auth", alias: Codetalks do
+    pipe_through :browser
+    get "/", AuthController, :index
+    get "/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Codetalks do
   #   pipe_through :api
   # end
+
+  defp assign_current_user(conn, _) do
+    assign(conn, :current_user, get_session(conn, :current_user))
+  end
 end
