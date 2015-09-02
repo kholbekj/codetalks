@@ -4,6 +4,7 @@ defmodule Codetalks.TalkController do
   alias Codetalks.Talk
 
   plug :scrub_params, "talk" when action in [:create, :update]
+  plug Codetalks.Plugs.CheckAuthentication
 
   def index(conn, _params) do
     talks = Repo.all(Talk)

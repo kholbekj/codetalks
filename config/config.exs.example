@@ -1,6 +1,0 @@
-use Mix.Config
-
-config :oauth, GitHub,
-  client_id: "your_client_id",
-  client_secret: "your_client_secret",
-  redirect_uri: "http://lvh.me:4000/auth/callback"

@@ -22,7 +22,7 @@ defmodule Codetalks.AuthController do
     token = GitHub.get_token!(code: code)
 
     # Request the user's data with the access token
-    user = OAuth2.AccessToken.get!(token, "/user")
+    github_user = OAuth2.AccessToken.get!(token, "/user")
 
     # Store the user in the session under `:current_user` and redirect to /.
     # In most cases, we'd probably just store the user's ID that can be used
@@ -31,8 +31,22 @@ defmodule Codetalks.AuthController do
     #
     # If you need to make additional resource requests, you may want to store
     # the access token as well.
+    alias Codetalks.User
+    alias Codetalks.Repo
+    user = List.first Repo.all from u in User, where: u.email == ^github_user["email"]
+    if is_nil(user) do
+      changeset = User.changeset(%User{}, %{email: github_user["email"], name: github_user["name"]})
+      case Repo.insert(changeset) do
+        {:ok, new_user} ->
+          user = new_user
+        {:error, changeset} ->
+          IO.puts("Something went wrong!")
+          raise changeset
+      end
+    end
+
     conn
-    |> put_session(:current_user, user)
+    |> put_session(:user_id, user.id)
     |> put_session(:access_token, token.access_token)
     |> redirect(to: "/")
   end
