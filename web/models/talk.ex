@@ -24,4 +24,9 @@ defmodule Codetalks.Talk do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def embedded_link(talk) do
+    %{"video" => video, "youtube" => youtube } = Regex.named_captures ~r/(?<youtube>.+?youtube\..+?)\/watch\?v=(?<video>.+?)(&|$)/, talk.link
+    "#{youtube}/embed/#{video}"
+  end
 end
