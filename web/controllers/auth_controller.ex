@@ -35,7 +35,7 @@ defmodule Codetalks.AuthController do
     alias Codetalks.Repo
     user = List.first Repo.all from u in User, where: u.github_id == ^github_user["id"]
     if is_nil(user) do
-      changeset = User.changeset(%User{}, %{email: github_user["email"], name: github_user["name"]})
+      changeset = User.changeset(%User{}, %{email: github_user["email"], name: github_user["name"], github_id: github_user["id"]})
       case Repo.insert(changeset) do
         {:ok, new_user} ->
           user = new_user
