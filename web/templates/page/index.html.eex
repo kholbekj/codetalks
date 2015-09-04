@@ -1,37 +1,18 @@
 <div class="jumbotron">
-  <h2>Welcome to Phoenix!</h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-  <p><%= current_user(@conn).name %></img>
+  <h2>Welcome to the Codetalk Cafe!</h2>
+  <p class="lead">An attempt to gather<br />all the best programming talks!</p>
+  <%= if current_user(@conn) do %>
+    <p><%= current_user(@conn).name %></img>
+  <% end %>
 </div>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="http://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
+<%= unless current_user(@conn) do %>
+  <a style="text-align:center" href="/auth">
+    <img style="padding-left: 45%" src="/images/github-mark.png">
+    <h1>Login with GitHub</h1>
+  <a>
+<% end %>
 
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
+<div class="row marketing">
+
 </div>

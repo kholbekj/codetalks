@@ -3,6 +3,7 @@ defmodule Codetalks.UserController do
 
   alias Codetalks.User
 
+  plug Codetalks.Plugs.CheckAuthentication
   plug :scrub_params, "user" when action in [:create, :update]
 
   def show(conn, %{"id" => id}) do

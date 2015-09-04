@@ -33,7 +33,7 @@ defmodule Codetalks.AuthController do
     # the access token as well.
     alias Codetalks.User
     alias Codetalks.Repo
-    user = List.first Repo.all from u in User, where: u.email == ^github_user["email"]
+    user = List.first Repo.all from u in User, where: u.github_id == ^github_user["id"]
     if is_nil(user) do
       changeset = User.changeset(%User{}, %{email: github_user["email"], name: github_user["name"]})
       case Repo.insert(changeset) do
