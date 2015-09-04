@@ -9,8 +9,8 @@ defmodule Codetalks.User do
     timestamps
   end
 
-  @required_fields ~w(name email)
-  @optional_fields ~w()
+  @required_fields ~w(name github_id)
+  @optional_fields ~w(email)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
