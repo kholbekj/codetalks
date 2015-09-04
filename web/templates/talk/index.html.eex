@@ -27,13 +27,15 @@
         <%= link "Delete", to: talk_path(@conn, :delete, talk), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
-    <tr>
-      <td colspan="6">
-        <div class="video-wrapper">
-          <iframe width="100%" height="100%" src="<%= Codetalks.Talk.embedded_link(talk) %>" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </td>
-    </tr>
+    <%= if Codetalks.Talk.is_embeddable(talk) do %>
+      <tr>
+        <td colspan="6">
+          <div class="video-wrapper">
+            <iframe width="100%" height="100%" src="<%= Codetalks.Talk.embedded_link(talk) %>" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </td>
+      </tr>
+    <% end %>
 <% end %>
   </tbody>
 </table>

@@ -25,6 +25,10 @@ defmodule Codetalks.Talk do
     |> cast(params, @required_fields, @optional_fields)
   end
 
+  def is_embeddable(talk) do
+    Regex.match? ~r/.+youtube.+watch.+/, talk.link
+  end
+
   def embedded_link(talk) do
     %{"video" => video, "youtube" => youtube } = Regex.named_captures ~r/(?<youtube>.+?youtube\..+?)\/watch\?v=(?<video>.+?)(&|$)/, talk.link
     "#{youtube}/embed/#{video}"
