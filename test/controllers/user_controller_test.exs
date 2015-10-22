@@ -2,7 +2,7 @@ defmodule Codetalks.UserControllerTest do
   use Codetalks.ConnCase
 
   alias Codetalks.User
-  @valid_attrs %{email: "some content", name: "some content"}
+  @valid_attrs %{github_id: 123, name: "some content"}
   @invalid_attrs %{}
 
   setup do

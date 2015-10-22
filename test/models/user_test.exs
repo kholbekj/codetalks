@@ -3,7 +3,7 @@ defmodule Codetalks.UserTest do
 
   alias Codetalks.User
 
-  @valid_attrs %{email: "some content", name: "some content"}
+  @valid_attrs %{github_id: 123, name: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
