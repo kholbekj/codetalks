@@ -1,8 +1,10 @@
 language: elixir
 elixir: 1.0.5
 otp_release:
-  - 18.0
+  - 17.4
 sudo: false
+before_install:
+  - cp config/credentials.exs.example config/credentials.exs
 before_script:
   - mix deps.get --only test
 script:
