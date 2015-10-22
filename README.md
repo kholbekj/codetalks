@@ -1,5 +1,8 @@
 # Codetalks
 
+[![Build Status](https://travis-ci.org/kholbekj/codetalks.svg?branch=master)](https://travis-ci.org/kholbekj/codetalks)
+[![Inline docs](http://inch-ci.org/github/kholbekj/codetalks.svg?branch=master)](http://inch-ci.org/github/kholbekj/codetalks)
+
 This is the beginning of a project to collect code-related talks, rate, tag them, and so forth.
 
 To contribute:
