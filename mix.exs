@@ -35,6 +35,7 @@ defmodule Codetalks.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:oauth2, "~> 0.3"},]
+     {:oauth2, "~> 0.3"},
+     {:inch_ex, only: :docs}]
   end
 end
