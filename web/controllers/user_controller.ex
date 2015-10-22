@@ -4,7 +4,7 @@ defmodule Codetalks.UserController do
   alias Codetalks.User
 
   plug Codetalks.Plugs.CheckAuthentication
-  plug :scrub_params, "user" when action in [:create, :update]
+  plug :scrub_params, "user" when action in [:update]
 
   def show(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
